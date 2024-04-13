@@ -11,7 +11,8 @@ class KunjunganController extends Controller
      */
     public function index()
     {
-        //
+        $kunjungans = \App\Models\Kunjungan::paginate(20);
+        return view('pages.kunjungan.index', compact('kunjungans'));
     }
 
     /**
@@ -19,7 +20,8 @@ class KunjunganController extends Controller
      */
     public function create()
     {
-        //
+        $tamu = \App\Models\Tamu::all();
+        return view('pages.kunjungan.create', compact('tamu'));
     }
 
     /**
