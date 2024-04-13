@@ -13,7 +13,7 @@
             <div class="section-header">
                 <h1>Tamu</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('tamu.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('tamu.create') }}" class="btn btn-primary">Tambahkan Tamu Baru</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -52,16 +52,20 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th></th>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
-                                            <th>Action</th>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>No. Hp</th>
+                                            <th>Jabatan</th>
+                                            <th>Instansi</th>
+                                            <th>Aksi</th>
                                         </tr>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
                                         @foreach ($tamus as $tamu)
                                             <tr>
+                                                <td>{{ $counter++ }}</td>
 
 
                                                 <td>{{ $tamu->nama }}
@@ -80,7 +84,7 @@
                                                     {{ $tamu->instansi }}
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex justify-content-center">
+                                                    <div class="d-flex justify-content-start">
                                                         <a href='{{ route('tamu.edit', $tamu->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>

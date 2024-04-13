@@ -52,7 +52,9 @@ class TamuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tamu = \App\Models\Tamu::find($id);
+        return view('pages.tamu.edit', compact('tamu'));
+
     }
 
     /**
@@ -60,7 +62,9 @@ class TamuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $tamu = \App\Models\Tamu::find($id);
+        $tamu->update($request->all());
+        return redirect()->route('tamu.index')->with('success', 'Tamu successfully updated');
     }
 
     /**
@@ -68,6 +72,9 @@ class TamuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tamu = \App\Models\Tamu::find($id);
+        $tamu->delete();
+        return redirect()->route('tamu.index')->with('success', 'Tamu successfully deleted');
+
     }
 }
