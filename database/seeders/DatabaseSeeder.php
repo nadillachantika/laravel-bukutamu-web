@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Kunjungan;
+use Database\Factories\KunjunganFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,11 +23,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
 
-        $this->call([
-            // UsersTableSeeder::class,
-            // CategorySeeder::class,
-            // ProductSeeder::class,
-            DiscountSeeder::class
-        ]);
+        // $this->call([
+        //     // UsersTableSeeder::class,
+        //     // CategorySeeder::class,
+        //     // ProductSeeder::class,
+        //     DiscountSeeder::class
+        // ]);
+
+        Kunjungan::factory()->count(20)->create();
+
+
     }
 }

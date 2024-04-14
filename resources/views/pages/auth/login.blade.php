@@ -8,12 +8,14 @@
 @endpush
 
 @section('main')
+
     <div class="card card-primary">
         <div class="card-header">
             <h4>Login</h4>
         </div>
 
         <div class="card-body">
+
             <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">

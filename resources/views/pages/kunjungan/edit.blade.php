@@ -13,9 +13,9 @@
 @endpush
 
 @section('main')
-   <!-- Select2 -->
-   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     <style>
@@ -41,8 +41,9 @@
 
 
                 <div class="card">
-                    <form action="{{ route('kunjungan.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('kunjungan.update', $kunjungan) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
@@ -53,9 +54,10 @@
                                     id="">
                                     <option value="" class="align-center">--Pilih Tamu--</option>
                                     @foreach ($tamus as $tamu)
-                                        <option
-                                            value="{{ $tamu->id }}"{{ old('tamu_id') == $tamu->id ? 'selected' : '' }}>
-                                            {{ $tamu->nama }}</option>
+                                        <option value="{{ $tamu->id }}"
+                                            {{ $kesansaran->tamu_id == $tamu->id ? 'selected' : '' }}>
+                                            {{ $tamu->nama }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -65,17 +67,24 @@
                                     class="form-control selectric @error('jenis_kunjungan') is-invalid @enderror"
                                     id="">
                                     <option value="">--Pilih Jenis Kunjungan--</option>
-                                    <option value="perorangan">Perorangan</option>
-                                    <option value="kelompok">Kelompok</option>
+                                    <option value="perorangan"
+                                        {{ $kunjungan->jenis_kunjungan == 'perorangan' ? 'selected' : '' }}>
+                                        Perorangan
+                                    </option>
+                                    <option value="kelompok"
+                                        {{ $kunjungan->jenis_kunjungan == 'kelompok' ? 'selected' : '' }}>
+                                        Kelompok
+                                    </option>
                                 </select>
                             </div>
+
                             <div class="form-group mr-3">
                                 <label>Tanggal</label>
                                 <input type="date"
                                     class="form-control @error('tanggal')
                                 is-invalid
                             @enderror"
-                                    name="tanggal">
+                                    name="tanggal" value="{{ $kunjungan->tanggal }}">
                                 @error('tanggal')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -90,7 +99,7 @@
                                         class="form-control @error('waktu_masuk')
                                     is-invalid
                                 @enderror"
-                                        name="waktu_masuk">
+                                        name="waktu_masuk" value="{{ $kunjungan->waktu_masuk }}">
                                     @error('waktu_masuk')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -104,7 +113,7 @@
                                         class="form-control @error('waktu_keluar')
                                     is-invalid
                                 @enderror"
-                                        name="waktu_keluar">
+                                        name="waktu_keluar" value="{{ $kunjungan->waktu_keluar }}">
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -120,7 +129,7 @@
                                     class="form-control @error('keterangan')
                                 is-invalid
                             @enderror"
-                                    name="keterangan">
+                                    name="keterangan" value="{{ $kunjungan->keterangan }}">
                                 @error('keterangan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -147,13 +156,9 @@
 @endsection
 
 @push('scripts')
-
-
-<script defer>
-
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-</script>
-
+    <script defer>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endpush

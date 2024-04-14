@@ -4,10 +4,8 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
 
 @section('main')
@@ -20,14 +18,15 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="far fa-user"></i>
+                            <i class="far fa-calendar"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Admin</h4>
+                                <h4>Tamu Hari Ini</h4>
                             </div>
-                            <div class="card-body">
-                                10
+                            <div class="card-body" id="kunjunganhariini">
+                                Loading...
+
                             </div>
                         </div>
                     </div>
@@ -35,14 +34,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                            <i class="far fa-calendar-alt"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>News</h4>
+                                <h4>Tamu Bulan Ini</h4>
                             </div>
-                            <div class="card-body">
-                                42
+                            <div class="card-body" id="kunjunganbulanan">
+                                Loading...
                             </div>
                         </div>
                     </div>
@@ -50,14 +49,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
+                            <i class="far fa-calendar-alt"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Reports</h4>
+                                <h4>Tamu Tahun Ini</h4>
                             </div>
-                            <div class="card-body">
-                                1,201
+                            <div class="card-body" id="kunjungantahunan">
+                                Loading...
                             </div>
                         </div>
                     </div>
@@ -65,516 +64,41 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Online Users</h4>
+                                <h4>Total Tamu</h4>
                             </div>
-                            <div class="card-body">
-                                47
+                            <div class="card-body" id="totalkunjungan">
+                                Loading...
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Statistics</h4>
                             <div class="card-header-action">
                                 <div class="btn-group">
-                                    <a href="#"
-                                        class="btn btn-primary">Week</a>
-                                    <a href="#"
-                                        class="btn">Month</a>
+                                    <a href="#" class="btn btn-primary">Week</a>
+                                    <a href="#" class="btn">Month</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart"
-                                height="182"></canvas>
-                            <div class="statistic-details mt-sm-4">
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 7%</span>
-                                    <div class="detail-value">$243</div>
-                                    <div class="detail-name">Today's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-danger"><i
-                                                class="fas fa-caret-down"></i></span> 23%</span>
-                                    <div class="detail-value">$2,902</div>
-                                    <div class="detail-name">This Week's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span>9%</span>
-                                    <div class="detail-value">$12,821</div>
-                                    <div class="detail-name">This Month's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 19%</span>
-                                    <div class="detail-value">$92,142</div>
-                                    <div class="detail-name">This Year's Sales</div>
-                                </div>
-                            </div>
+                            <canvas id="myChart" height="182"></canvas>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Activities</h4>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="text-primary float-right">Now</div>
-                                        <div class="media-title">Farhan A Mujib</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">12m</div>
-                                        <div class="media-title">Ujang Maman</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-3.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">17m</div>
-                                        <div class="media-title">Rizal Fakhri</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-4.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">21m</div>
-                                        <div class="media-title">Alfa Zulkarnain</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="pt-1 pb-1 text-center">
-                                <a href="#"
-                                    class="btn btn-primary btn-lg btn-round">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-body pt-2 pb-2">
-                            <div id="myWeather">Please wait</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Authors</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col-6 col-sm-3 col-lg-3 mb-md-0 mb-4">
-                                    <div class="avatar-item mb-0">
-                                        <img alt="image"
-                                            src="{{ asset('img/avatar/avatar-5.png') }}"
-                                            class="img-fluid"
-                                            data-toggle="tooltip"
-                                            title="Alfa Zulkarnain">
-                                        <div class="avatar-badge"
-                                            title="Editor"
-                                            data-toggle="tooltip"><i class="fas fa-wrench"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-3 col-lg-3 mb-md-0 mb-4">
-                                    <div class="avatar-item mb-0">
-                                        <img alt="image"
-                                            src="{{ asset('img/avatar/avatar-4.png') }}"
-                                            class="img-fluid"
-                                            data-toggle="tooltip"
-                                            title="Egi Ferdian">
-                                        <div class="avatar-badge"
-                                            title="Admin"
-                                            data-toggle="tooltip"><i class="fas fa-cog"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-3 col-lg-3 mb-md-0 mb-4">
-                                    <div class="avatar-item mb-0">
-                                        <img alt="image"
-                                            src="{{ asset('img/avatar/avatar-1.png') }}"
-                                            class="img-fluid"
-                                            data-toggle="tooltip"
-                                            title="Jaka Ramadhan">
-                                        <div class="avatar-badge"
-                                            title="Author"
-                                            data-toggle="tooltip"><i class="fas fa-pencil-alt"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-3 col-lg-3 mb-md-0 mb-4">
-                                    <div class="avatar-item mb-0">
-                                        <img alt="image"
-                                            src="{{ asset('img/avatar/avatar-2.png') }}"
-                                            class="img-fluid"
-                                            data-toggle="tooltip"
-                                            title="Ryan">
-                                        <div class="avatar-badge"
-                                            title="Admin"
-                                            data-toggle="tooltip"><i class="fas fa-cog"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Referral URL</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">2,100</div>
-                                <div class="font-weight-bold mb-1">Google</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="80%"
-                                        aria-valuenow="80"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
 
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">1,880</div>
-                                <div class="font-weight-bold mb-1">Facebook</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="67%"
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">1,521</div>
-                                <div class="font-weight-bold mb-1">Bing</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="58%"
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">884</div>
-                                <div class="font-weight-bold mb-1">Yahoo</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="36%"
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">473</div>
-                                <div class="font-weight-bold mb-1">Kodinger</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="28%"
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">418</div>
-                                <div class="font-weight-bold mb-1">Multinity</div>
-                                <div class="progress"
-                                    data-height="3">
-                                    <div class="progress-bar"
-                                        role="progressbar"
-                                        data-width="20%"
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Popular Browser</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <div class="browser browser-chrome"></div>
-                                    <div class="font-weight-bold mt-2">Chrome</div>
-                                    <div class="text-muted text-small"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 48%</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="browser browser-firefox"></div>
-                                    <div class="font-weight-bold mt-2">Firefox</div>
-                                    <div class="text-muted text-small"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 26%</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="browser browser-safari"></div>
-                                    <div class="font-weight-bold mt-2">Safari</div>
-                                    <div class="text-muted text-small"><span class="text-danger"><i
-                                                class="fas fa-caret-down"></i></span> 14%</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="browser browser-opera"></div>
-                                    <div class="font-weight-bold mt-2">Opera</div>
-                                    <div class="text-muted text-small">7%</div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="browser browser-internet-explorer"></div>
-                                    <div class="font-weight-bold mt-2">IE</div>
-                                    <div class="text-muted text-small"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 5%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-sm-5 mt-md-0">
-                        <div class="card-header">
-                            <h4>Visitors</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="visitorMap"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>This Week Stats</h4>
-                            <div class="card-header-action">
-                                <div class="dropdown">
-                                    <a href="#"
-                                        class="dropdown-toggle btn btn-primary"
-                                        data-toggle="dropdown">Filter</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#"
-                                            class="dropdown-item has-icon"><i class="far fa-circle"></i> Electronic</a>
-                                        <a href="#"
-                                            class="dropdown-item has-icon"><i class="far fa-circle"></i> T-shirt</a>
-                                        <a href="#"
-                                            class="dropdown-item has-icon"><i class="far fa-circle"></i> Hat</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#"
-                                            class="dropdown-item">View All</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="summary">
-                                <div class="summary-info">
-                                    <h4>$1,053</h4>
-                                    <div class="text-muted">Sold 3 items on 2 customers</div>
-                                    <div class="d-block mt-2">
-                                        <a href="#">View All</a>
-                                    </div>
-                                </div>
-                                <div class="summary-item">
-                                    <h6>Item List <span class="text-muted">(3 Items)</span></h6>
-                                    <ul class="list-unstyled list-unstyled-border">
-                                        <li class="media">
-                                            <a href="#">
-                                                <img class="mr-3 rounded"
-                                                    width="50"
-                                                    src="{{ asset('img/products/product-1-50.png') }}"
-                                                    alt="product">
-                                            </a>
-                                            <div class="media-body">
-                                                <div class="media-right">$405</div>
-                                                <div class="media-title"><a href="#">PlayStation 9</a></div>
-                                                <div class="text-muted text-small">by <a href="#">Hasan Basri</a>
-                                                    <div class="bullet"></div> Sunday
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="#">
-                                                <img class="mr-3 rounded"
-                                                    width="50"
-                                                    src="{{ asset('img/products/product-2-50.png') }}"
-                                                    alt="product">
-                                            </a>
-                                            <div class="media-body">
-                                                <div class="media-right">$499</div>
-                                                <div class="media-title"><a href="#">RocketZ</a></div>
-                                                <div class="text-muted text-small">by <a href="#">Hasan Basri</a>
-                                                    <div class="bullet"></div> Sunday
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="#">
-                                                <img class="mr-3 rounded"
-                                                    width="50"
-                                                    src="{{ asset('img/products/product-3-50.png') }}"
-                                                    alt="product">
-                                            </a>
-                                            <div class="media-body">
-                                                <div class="media-right">$149</div>
-                                                <div class="media-title"><a href="#">Xiaomay Readme 4.0</a></div>
-                                                <div class="text-muted text-small">by <a href="#">Kusnaedi</a>
-                                                    <div class="bullet"></div> Tuesday
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="d-inline">Tasks</h4>
-                            <div class="card-header-action">
-                                <a href="#"
-                                    class="btn btn-primary">View All</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
-                                            class="custom-control-input"
-                                            id="cbx-1">
-                                        <label class="custom-control-label"
-                                            for="cbx-1"></label>
-                                    </div>
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-4.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="badge badge-pill badge-danger float-right mb-1">Not Finished</div>
-                                        <h6 class="media-title"><a href="#">Redesign header</a></h6>
-                                        <div class="text-small text-muted">Alfa Zulkarnain <div class="bullet"></div>
-                                            <span class="text-primary">Now</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
-                                            class="custom-control-input"
-                                            id="cbx-2"
-                                            checked="">
-                                        <label class="custom-control-label"
-                                            for="cbx-2"></label>
-                                    </div>
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-5.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="badge badge-pill badge-primary float-right mb-1">Completed</div>
-                                        <h6 class="media-title"><a href="#">Add a new component</a></h6>
-                                        <div class="text-small text-muted">Serj Tankian <div class="bullet"></div> 4 Min
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
-                                            class="custom-control-input"
-                                            id="cbx-3">
-                                        <label class="custom-control-label"
-                                            for="cbx-3"></label>
-                                    </div>
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="badge badge-pill badge-warning float-right mb-1">Progress</div>
-                                        <h6 class="media-title"><a href="#">Fix modal window</a></h6>
-                                        <div class="text-small text-muted">Ujang Maman <div class="bullet"></div> 8 Min
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
-                                            class="custom-control-input"
-                                            id="cbx-4">
-                                        <label class="custom-control-label"
-                                            for="cbx-4"></label>
-                                    </div>
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="badge badge-pill badge-danger float-right mb-1">Not Finished</div>
-                                        <h6 class="media-title"><a href="#">Remove unwanted classes</a></h6>
-                                        <div class="text-small text-muted">Farhan A Mujib <div class="bullet"></div> 21
-                                            Min</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{--
             <div class="row">
                 <div class="col-lg-5 col-md-12 col-12 col-sm-12">
                     <form method="post"
@@ -800,7 +324,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </div>
 @endsection
@@ -816,4 +340,103 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            $.ajax({
+                url: '/total-kunjungan',
+                type: 'GET',
+                success: function(response) {
+                    $('#totalkunjungan').text(response.total);
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    // Handle error if any
+                }
+            });
+
+            $.ajax({
+                url: '/kunjungan-harian',
+                type: 'GET',
+                success: function(response) {
+
+                    $('#kunjunganhariini').text(response.kunjunganHariIni);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+
+            $.ajax({
+                url: '/kunjungan-bulanan',
+                type: 'GET',
+                success: function(response) {
+
+                    $('#kunjunganbulanan').text(response.kunjunganBulananIni);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+
+            $.ajax({
+                url: '/kunjungan-tahunan',
+                type: 'GET',
+                success: function(response) {
+
+                    $('#kunjungantahunan').text(response.kunjunganTahunIni);
+
+                },
+                error: function(xhr, status, error) {
+
+                    console.error(xhr.responseText);
+                }
+            })
+
+        });
+
+        $.ajax({
+            url: '/total-tamu-per-bulan',
+            type: 'GET',
+            success: function(response) {
+                var data = response.total_tamu_perbulan;
+                var labels = [];
+                var values = [];
+
+                data.forEach(function(item) {
+                    labels.push(item.tanggal);
+                    values.push(item.total);
+                });
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Tamu per Hati',
+                            data: values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                // Handle error if any
+            }
+        });
+    </script>
 @endpush

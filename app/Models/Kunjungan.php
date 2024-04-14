@@ -12,7 +12,7 @@ class Kunjungan extends Model
 
     protected $table = 'kunjungan';
 
-    protected $fillable = ['tamu_id', 'jenis_kunjungan', 'waktu_masuk', 'waktu_keluar', 'keterangan_kunjungan'];
+    protected $fillable = ['tamu_id', 'tanggal','jenis_kunjungan', 'waktu_masuk', 'waktu_keluar', 'keterangan_kunjungan'];
 
     public function tamu(){
         return $this->belongsTo(Tamu::class);

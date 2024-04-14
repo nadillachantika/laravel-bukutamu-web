@@ -6,61 +6,62 @@ use Illuminate\Http\Request;
 
 class KunjunganController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $kunjungans = \App\Models\Kunjungan::paginate(20);
+        $kunjungans->load('tamu');
         return view('pages.kunjungan.index', compact('kunjungans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $tamu = \App\Models\Tamu::all();
-        return view('pages.kunjungan.create', compact('tamu'));
+        $tamus = \App\Models\Tamu::all();
+        return view('pages.kunjungan.create', compact('tamus'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
+        $kunjungan = new \App\Models\Kunjungan;
+        $kunjungan->tamu_id = $request->tamu_id;
+        $kunjungan->tanggal = $request->tanggal;
+        $kunjungan->jenis_kunjungan = $request->jenis_kunjungan;
+        $kunjungan->waktu_masuk = $request->waktu_masuk;
+        $kunjungan->waktu_keluar = $request->waktu_keluar;
+        $kunjungan->keterangan_kunjungan = $request->keterangan_kunjungan;
+        $kunjungan->save();
+
+        return redirect()->route('kunjungan.index')->with('success', 'Kunjungan successfully created');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $kunjungan = \App\Models\Kunjungan::find($id);
+        $tamus = \App\Models\Tamu::all();
+        return view('pages.kunjungan.edit', compact('kunjungan', 'tamus'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $kunjungan = \App\Models\Kunjungan::find($id);
+        $kunjungan->tamu_id = $request->tamu_id;
+        $kunjungan->tanggal = $request->tanggal;
+        $kunjungan->jenis_kunjungan = $request->jenis_kunjungan;
+        $kunjungan->waktu_masuk = $request->waktu_masuk;
+        $kunjungan->waktu_keluar = $request->waktu_keluar;
+        $kunjungan->keterangan_kunjungan = $request->keterangan_kunjungan;
+        $kunjungan->save();
+
+        return redirect()->route('kunjungan.index')->with('success', 'Kunjungan successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        $kunjungan = \App\Models\Kunjungan::find($id);
+        $kunjungan->delete();
+        return redirect()->route('kunjungan.index')->with('success', 'Kunjungan successfully deleted');
     }
 }

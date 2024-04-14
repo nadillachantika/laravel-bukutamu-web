@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kunjungan')
+@section('title', 'Kesan dan Saran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kunjungan</h1>
+                <h1>Kesan dan Saran</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('kunjungan.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('kesansaran.create') }}" class="btn btn-primary">Tambahkan Kesan dan Saran</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Kunjungan</a></div>
-                    <div class="breadcrumb-item">All Kunjungan</div>
+                    <div class="breadcrumb-item"><a href="#">Kesan dan Saran</a></div>
+                    <div class="breadcrumb-item">All Kesan dan Saran</div>
                 </div>
             </div>
             <div class="section-body">
@@ -32,11 +32,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Kunjungan</h4>
+                                <h4>Semua Kesan dan Saran</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('kunjungan.index') }}">
+                                    <form method="GET" action="{{ route('kesansaran.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -52,41 +52,37 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th>Nama Pengunjunga</th>
-                                            <th>Jenis Kunjungan</th>
-                                            <th>Waktu Masuk</th>
-                                            <th>Waktu Keluar</th>
-                                            <th>Keterangan</th>
+                                            <th>No</th>
+                                            <th>Nama Pengunjung</th>
+                                            <th>Kesan</th>
+                                            <th>Saran</th>
                                             <th>Aksi</th>
                                         </tr>
-                                        @foreach ($kunjungans as $kunjungan)
+                                        @php
+                                            $counter = 1;
+                                        @endphp
+                                        @foreach ($kesansarans as $kesansaran)
                                             <tr>
+                                                <td>{{ $counter++ }}</td>
 
 
-                                                <td>{{ $kunjungan->tamu->nama }}
+                                                <td>{{ $kesansaran->tamu->nama }}
                                                 </td>
 
-                                                <td>{{ $kunjungan->jenis_kunjungan }}
+                                                <td>{{ $kesansaran->kesan }}
                                                 </td>
                                                 <td>
-                                                    {{ $kunjungan->waktu_masuk }}
-                                                </td>
-
-                                                <td>
-                                                    {{ $kunjungan->waktu_keluar }}
+                                                    {{ $kesansaran->saran }}
                                                 </td>
                                                 <td>
-                                                    {{ $kunjungan->keterangan_kunjungan }}
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('kunjungan.edit', $kunjungan->id) }}'
+                                                    <div class="d-flex justify-content-start">
+                                                        <a href='{{ route('kesansaran.edit', $kesansaran->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('kunjungan.destroy', $kunjungan->id) }}" method="POST"
+                                                        <form action="{{ route('kesansaran.destroy', $kesansaran->id) }}" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -104,7 +100,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $kunjungans->withQueryString()->links() }}
+                                    {{ $kesansarans->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

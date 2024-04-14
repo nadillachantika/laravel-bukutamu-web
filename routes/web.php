@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KesanSaranController;
 use App\Http\Controllers\KunjunganController;
 use App\Http\Controllers\OrderController;
@@ -26,8 +27,8 @@ Route::get('/', function () {
     return view('pages.auth.login');
 });
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('home', function(){
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
         return view('pages.dashboard');
     })->name('home');
 
@@ -36,7 +37,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('kunjungan', KunjunganController::class);
     Route::resource('kesansaran', KesanSaranController::class);
 
-
-
+    Route::get('/total-kunjungan', [DashboardController::class, 'getTotalKunjungan']);
+    Route::get('/kunjungan-harian', [DashboardController::class, 'getKunjunganHarian']);
+    Route::get('/kunjungan-bulanan', [DashboardController::class, 'getKunjunganBulanan']);
+    Route::get('/kunjungan-tahunan', [DashboardController::class, 'getKunjunganTahunan']);
+    Route::get('/total-tamu-per-bulan', [DashboardController::class, 'getTotalTamuPerBulan']);
 });
-
