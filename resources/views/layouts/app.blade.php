@@ -50,6 +50,12 @@
 
 
 <body>
+    <style>
+        .btn-primary:hover {
+            background-color: #ee7c7c !important;
+            box-shadow: 0 2px 6px #0000;
+        }
+    </style>
     <div id="app">
         <div class="main-wrapper">
             <!-- Header -->
