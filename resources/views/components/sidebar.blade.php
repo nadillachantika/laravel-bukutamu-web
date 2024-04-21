@@ -13,6 +13,7 @@
             <li class="{{ request()->routeIs('tamu.index') ? 'active' : '' }}"><a href="{{ route('tamu.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Tamu</span></a></li>
             <li class="{{ request()->routeIs('kunjungan.index') ? 'active' : '' }}"><a href="{{ route('kunjungan.index') }}" class="nav-link"><i class="fas fa-calendar-check"></i><span>Kunjungan</span></a></li>
             <li class="{{ request()->routeIs('kesansaran.index') ? 'active' : '' }}"><a href="{{ route('kesansaran.index') }}" class="nav-link"><i class="fas fa-comment"></i><span>Kesan & Saran</span></a></li>
+            <li class="{{ request()->routeIs('pengaturan.index') ? 'active' : '' }}"><a href="{{ route('pengaturan.index') }}" class="nav-link"><i class="fas fa-cog"></i><span>Pengaturan</span></a></li>
         </ul>
 
 

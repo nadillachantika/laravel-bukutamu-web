@@ -5,7 +5,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KesanSaranController;
 use App\Http\Controllers\KunjunganController;
+use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TamuController;
@@ -31,6 +33,9 @@ Route::get('/login', function () {
     return view('pages.auth.login');
 })->name('login');
 
+Route::get('/get-landingpage-content', [LandingpageController::class, 'get']);
+Route::post('/update-landingpage-content', [LandingpageController::class, 'update']);
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('home', function () {
@@ -41,10 +46,17 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tamu', TamuController::class);
     Route::resource('kunjungan', KunjunganController::class);
     Route::resource('kesansaran', KesanSaranController::class);
+    Route::resource('pengaturan', PengaturanController::class);
+
 
     Route::get('/total-kunjungan', [DashboardController::class, 'getTotalKunjungan']);
     Route::get('/kunjungan-harian', [DashboardController::class, 'getKunjunganHarian']);
     Route::get('/kunjungan-bulanan', [DashboardController::class, 'getKunjunganBulanan']);
     Route::get('/kunjungan-tahunan', [DashboardController::class, 'getKunjunganTahunan']);
     Route::get('/total-tamu-per-bulan', [DashboardController::class, 'getTotalTamuPerBulan']);
+
+
+
+
+
 });
