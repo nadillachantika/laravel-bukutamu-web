@@ -60,4 +60,5 @@ class KesanSaranController extends Controller
         $kesansaran->delete();
         return redirect()->route('kesansaran.index')->with('success', 'Kesansaran successfully deleted');
     }
+
 }
