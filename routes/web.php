@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landingpage.index');
-});
+
+Route::get('/', [LandingpageController::class, 'index']);
+
 
 Route::get('/login', function () {
     return view('pages.auth.login');
